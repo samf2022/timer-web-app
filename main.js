@@ -6,23 +6,30 @@ const timerScreen = document.querySelector(".screen");
 const button = document.querySelector(".class-1");
 const btn = document.querySelector(".add");
 let buttonClicked = false;
+let control = null;
 
 timerScreen.innerHTML = time;
 
 button.addEventListener("click", () => {
   let limit = 1000;
+
   timerId(limit);
 });
 
 const timerId = (limit) => {
-  setInterval(() => {
-    timerScreen.innerHTML = `${hours}:${minutes}:${seconds++}`;
-  }, limit);
+  if (!buttonClicked) {
+    control = setInterval(() => {
+      timerScreen.innerHTML = `${hours}:${minutes}:${seconds++}`;
+      console.log(seconds);
+    }, limit);
+    buttonClicked = true;
+    button.textContent = "Pause";
+  } else {
+    clearInterval(control);
+    buttonClicked = false;
+    button.textContent = "Play";
+  }
 };
-
-btn.addEventListener("click", () => {
-  seconds += 1;
-});
 
 // button.addEventListener("click", () => {
 //   if (!buttonClicked) {
