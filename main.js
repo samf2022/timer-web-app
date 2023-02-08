@@ -1,19 +1,18 @@
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
-const time = `${hours}:${minutes}:${seconds}`;
-const timerScreen = document.querySelector(".screen");
-const button = document.querySelector(".class-1");
-
 let buttonClicked = false;
 let result = null;
+const timerScreen = document.querySelector(".screen");
+const button = document.querySelector(".class-1");
+const time = `${hours}:${minutes}:${seconds}`;
 
 timerScreen.innerHTML = time;
 
 button.addEventListener("click", () => {
   if (!buttonClicked) {
     testFunction();
-    result = setInterval(testFunction, 1000);
+    result = setInterval(testFunction, 100);
     buttonClicked = true;
     button.textContent = "Pause";
   } else {
