@@ -20,7 +20,16 @@ const timerId = (limit) => {
   if (!buttonClicked) {
     control = setInterval(() => {
       timerScreen.innerHTML = `${hours}:${minutes}:${seconds++}`;
-      console.log(seconds);
+
+      if (seconds == 59) {
+        minutes++;
+        seconds = 0;
+      } else if (minutes == 59) {
+        hours++;
+        minutes = 0;
+      } else if (hours == 24) {
+        hours = 0;
+      }
     }, limit);
     buttonClicked = true;
     button.textContent = "Pause";
