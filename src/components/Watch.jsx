@@ -8,27 +8,16 @@ const Watch = () => {
 
   const intervalId = useRef(0);
 
-  let buttonClicked = false;
-  let result = null;
-  const timerScreen = document.querySelector(".screen");
-  const button = document.querySelector(".class-1");
-
   const funcTest = () => {
-    setMessage(
-      (prevMessage) => (prevMessage = prevMessage === "Play" ? "Pause" : "Play")
-    );
-    console.log(message);
     if (message == "Play") {
       intervalId.current = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds + 1);
       }, 1000);
 
-      //   testFunction();
-      //   result = setInterval(testFunction, 100);
-      //   buttonClicked = true;
-      //   button.textContent = "Pause";
+      setMessage("Pause");
     } else {
       clearInterval(intervalId.current);
+      setMessage("Play");
     }
   };
 
